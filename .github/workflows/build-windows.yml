@@ -19,8 +19,9 @@ jobs:
       with:
         python-version: '3.12'
 
-    - name: Install dependencies
+    - name: Build EXE
       run: |
+        pyinstaller --onefile zametka/main.py
         python -m pip install --upgrade pip
         pip install -r requirements.txt
         pip install pyinstaller
