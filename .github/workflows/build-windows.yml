@@ -19,16 +19,15 @@ jobs:
       with:
         python-version: '3.12'
 
-    - name: Build EXE
+    - name: Install dependencies
       run: |
-        pyinstaller --onefile zametka/main.py
         python -m pip install --upgrade pip
         pip install -r requirements.txt
         pip install pyinstaller
 
     - name: Build EXE
       run: |
-        pyinstaller --onefile main.py
+        pyinstaller --onefile zametka/main.py
 
     - name: Upload artifact
       uses: actions/upload-artifact@v4
