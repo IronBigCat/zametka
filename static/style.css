@@ -1,0 +1,180 @@
+/* === Базовая настройка страницы === */
+body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #fafafa;
+}
+
+.workspace {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* === Левая боковая панель === */
+.sidebar {
+    width: 260px;
+    background: #f8f9fa;
+    padding: 20px;
+    overflow-y: auto;
+    border-right: 1px solid #e0e0e0;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.sidebar-header h2 {
+    font-size: 18px;
+    margin: 0;
+    color: #333;
+}
+
+.add-page-button {
+    background: transparent;
+    border: none;
+    font-size: 22px;
+    cursor: pointer;
+    color: #666;
+    transition: color 0.2s;
+}
+
+.add-page-button:hover {
+    color: #000;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar li {
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 15px;
+    transition: background 0.2s, color 0.2s;
+    color: #333;
+}
+
+.sidebar li:hover {
+    background: #e5e5e5;
+}
+
+.sidebar li.active {
+    background: #d4d4d4;
+    font-weight: bold;
+}
+
+/* === Правая часть: редактор === */
+.editor {
+    flex: 1;
+    padding: 40px;
+    overflow-y: auto;
+}
+
+/* === Заголовок страницы === */
+#title {
+    border: none;
+    outline: none;
+    font-size: 2.5em;
+    font-weight: bold;
+    width: 100%;
+    margin-bottom: 20px;
+    background: transparent;
+}
+
+/* === Блоки на странице === */
+#content {
+    margin-top: 20px;
+}
+
+/* === Единичный блок === */
+.block {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 10px;
+    position: relative;
+    padding: 4px;
+    border-radius: 5px;
+}
+
+/* Подсветка блока при наведении */
+.block:hover {
+    background-color: #f5f5f5;
+}
+
+/* Кнопка "+" для добавления блока */
+.add-block-button {
+    visibility: hidden;
+    margin-right: 10px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 18px;
+    color: #bbb;
+}
+
+.block-content {
+    flex: 1;
+    outline: none;
+    min-height: 20px;
+    padding: 2px;
+}
+
+/* Подсказка (placeholder) в пустых блоках */
+.block-content:empty:before {
+    content: attr(data-placeholder);
+    color: #aaa;
+    pointer-events: none;
+}
+
+/* Стили разных типов блоков */
+[data-type="h1"] .block-content {
+    font-size: 2em;
+    font-weight: bold;
+}
+
+[data-type="h2"] .block-content {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+[data-type="text"] .block-content {
+    font-size: 1.1em;
+}
+
+/* === Всплывающее меню выбора блока === */
+.block-menu {
+    position: absolute;
+    left: 30px;
+    top: 0;
+    background: white;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    z-index: 10;
+}
+
+.block-menu div {
+    padding: 8px 12px;
+    cursor: pointer;
+}
+
+.block-menu div:hover {
+    background-color: #f0f0f0;
+}
+
+/* === Линия подсказки при перетаскивании блока === */
+.drop-indicator {
+    height: 4px;
+    background: #3498db;
+    margin: 4px 0;
+    border-radius: 2px;
+}

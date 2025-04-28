@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ note.title or 'Новая страница' }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="paper">
+    <form onsubmit="return false;">
+        <input type="text" id="title" name="title" value="{{ note.title }}" placeholder="Название страницы" required>
+
+        <div id="saved-content" style="display:none;">{{ note.content|safe }}</div>
+
+        <div id="content" style="min-height:400px;"></div>
+    </form>
+
+    <br>
+    <a href="{{ url_for('index') }}">← Назад ко всем страницам</a>
+</div>
+
+<!-- Подключаем отдельный JS -->
+<script src="{{ url_for('static', filename='note.js') }}"></script>
+
+</body>
+</html>

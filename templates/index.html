@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Заметка</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="workspace">
+
+    <!-- Боковое меню -->
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h2>Мои страницы</h2>
+            <button class="add-page-button" onclick="createNewNote()">➕</button>
+        </div>
+        <ul id="note-list">
+            {% for note in notes.values() %}
+                <li onclick="loadNote({{ note.id }})" id="note-{{ note.id }}">
+                    {{ note.title or 'Без названия' }}
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <!-- Правая часть: редактор заметок -->
+    <div class="editor">
+        <form onsubmit="return false;">
+            <input type="text" id="title" placeholder="Название страницы" required>
+            <div id="content" style="min-height: 400px;"></div>
+        </form>
+    </div>
+
+</div>
+
+<!-- Скрытый контейнер для хранения старого контента -->
+<div id="saved-content" style="display:none;"></div>
+
+<!-- Скрипты -->
+<script src="{{ url_for('static', filename='note.js') }}"></script>
+<script src="{{ url_for('static', filename='workspace.js') }}"></script>
+
+</body>
+</html>
