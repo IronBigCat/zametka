@@ -9,7 +9,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/IronBigCat/zametka.git"
   },
   "keywords": [],
   "author": "",
@@ -23,28 +22,13 @@
     "electron-builder": "^26.0.12"
   },
   "build": {
-    "productName": "zametka",
     "appId": "com.example.zametka",
-    "directories": {
-      "output": "dist"
-    },
     "files": [
-      "static/",
       "templates/",
-      "data/",
-      "notes.json",
-      "requirements.txt",
-      "add.py",
-      "main.js"
-    ],
-    "extraResources": [
       "static/",
-      "templates/",
       "data/",
       "notes.json",
       "requirements.txt",
       "add.py"
-    ],
-    "publish": null
   }
 }
