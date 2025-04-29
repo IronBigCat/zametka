@@ -1,0 +1,45 @@
+{
+  "name": "zametka",
+  "version": "1.0.0",
+  "description": "**Русский аналог Notion.** Простое десктопное приложение для ведения заметок, страниц и текстовых блоков.   Написано на **Python + Flask**, кроссплатформенное.",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IronBigCat/zametka.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/IronBigCat/zametka/issues"
+  },
+  "homepage": "https://github.com/IronBigCat/zametka#readme",
+  "devDependencies": {
+    "electron": "^36.0.0",
+    "electron-builder": "^26.0.12"
+  },
+  "build": {
+    "appId": "com.example.zametka",
+    "files": [
+      "**/*",
+      "!node_modules/*/{CHANGELOG.md,README.md,README,readme.md,readme}",
+      "!**/.*",
+      "!**/*.md"
+    ],
+    "extraResources": [
+      "templates/",
+      "static/",
+      "data/",
+      "notes.json",
+      "requirements.txt",
+      "add.py"
+    ]
+  }
+}
+
+
+
