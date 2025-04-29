@@ -7,10 +7,10 @@ on:
 
 jobs:
   build:
-    runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
 
     steps:
       - name: Checkout repo
@@ -24,8 +24,15 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Build app
-        run: npm run dist
+      - name: Build app for current OS
+        run: |
+          if [[ "$RUNNER_OS" == "Linux" ]]; then
+            npm run dist -- --linux AppImage
+          elif [[ "$RUNNER_OS" == "Windows" ]]; then
+            npm run dist -- --win
+          elif [[ "$RUNNER_OS" == "macOS" ]]; then
+            npm run dist -- --mac
+          fi
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
