@@ -80,7 +80,6 @@ body {
     overflow-y: auto;
 }
 
-/* === Заголовок страницы === */
 #title {
     border: none;
     outline: none;
@@ -89,6 +88,17 @@ body {
     width: 100%;
     margin-bottom: 20px;
     background: transparent;
+    min-height: 50px;
+    white-space: pre-wrap; /* Ломать строки нормально */
+    overflow-wrap: break-word;
+    word-break: break-word;
+}
+
+/* Поддержка placeholder для contenteditable */
+#title:empty:before {
+    content: attr(data-placeholder);
+    color: #aaa;
+    pointer-events: none;
 }
 
 /* === Блоки на странице === */
@@ -177,4 +187,13 @@ body {
     background: #3498db;
     margin: 4px 0;
     border-radius: 2px;
+}
+
+.block-content {
+    flex: 1;
+    outline: none;
+    min-height: 20px;
+    padding: 2px;
+    word-break: break-word; /* Ломаем слишком длинные слова */
+    overflow-wrap: break-word; /* Поддержка для старых браузеров */
 }
