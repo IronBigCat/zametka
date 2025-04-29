@@ -23,7 +23,7 @@ jobs:
 
       - name: Install dependencies
         run: npm install
-        working-directory: .
+        working-directory: zametka
 
       - name: Build app for current OS
         run: |
@@ -34,10 +34,10 @@ jobs:
           elif [[ "$RUNNER_OS" == "macOS" ]]; then
             npm run dist -- --mac
           fi
-        working-directory: .
+        working-directory: zametka
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
           name: zametka-${{ matrix.os }}
-          path: dist/
+          path: zametka/dist/
