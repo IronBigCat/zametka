@@ -7,28 +7,35 @@ on:
 
 jobs:
   build:
+    runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
-    runs-on: ${{ matrix.os }}
 
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v3
         with:
-          node-version: 20
+          node-version: 18
 
       - name: Install dependencies
         run: npm install
 
-      - name: Build app for current OS
-        run: npm run dist
+      - name: Build for current OS
+        run: |
+          if [[ "$RUNNER_OS" == "macOS" ]]; then
+            npm run dist:mac
+          elif [[ "$RUNNER_OS" == "Windows" ]]; then
+            npm run dist:win
+          elif [[ "$RUNNER_OS" == "Linux" ]]; then
+            npm run dist:linux
+          fi
 
       - name: Upload artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v3
         with:
-          name: zametka-${{ matrix.os }}
+          name: zametka-${{ runner.os }}
           path: dist/
