@@ -32,8 +32,12 @@
       "static/"
     ],
     "mac": {
-      "target": ["dmg"],
-      "arch": ["x64", "arm64"]
+      "target": [
+        {
+          "target": "dmg",
+          "arch": ["x64", "arm64"]
+        }
+      ]
     },
     "win": {
       "target": "nsis"
@@ -41,8 +45,7 @@
     "linux": {
       "target": "AppImage",
       "category": "Utility"
-    },
-    "publish": null
+    }
   },
   "devDependencies": {
     "electron": "^36.0.0",

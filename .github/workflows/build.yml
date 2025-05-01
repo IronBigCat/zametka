@@ -2,8 +2,7 @@ name: Build Electron App
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
 
 jobs:
   build:
@@ -13,13 +12,12 @@ jobs:
         os: [ubuntu-latest, windows-latest, macos-latest]
 
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v3
 
-      - name: Setup Node.js
+      - name: Use Node.js 18
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 18
 
       - name: Install dependencies
         run: npm install
@@ -31,6 +29,5 @@ jobs:
           elif [[ "$RUNNER_OS" == "Windows" ]]; then
             npm run dist:win
           elif [[ "$RUNNER_OS" == "macOS" ]]; then
-            npx electron-builder --mac --x64 --arm64
+            npm run dist:mac
           fi
-        shell: bash
