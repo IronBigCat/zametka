@@ -2,6 +2,7 @@ const { app, BrowserWindow } = require('electron');
 const path = require('path');
 const { spawn } = require('child_process');
 const http = require('http');
+const fs = require('fs');
 
 let pyProc = null;
 
@@ -39,7 +40,30 @@ function createWindow() {
 
 function startPython() {
   const script = path.join(__dirname, 'add.py');
-  pyProc = spawn('python3', [script]);
+
+  let pythonCmd = 'python3';
+  let options = {};
+
+  if (process.platform === 'win32') {
+    pythonCmd = path.join(__dirname, 'python-windows', 'python.exe');
+
+    // Проверим, существует ли файл python.exe
+    if (!fs.existsSync(pythonCmd)) {
+      console.error('❌ python.exe не найден в python-windows');
+      return;
+    }
+
+    // Добавим путь к .dll и .zip в PYTHONPATH (важно для embedded-дистрибутива)
+    options = {
+      cwd: path.join(__dirname, 'python-windows'),
+      env: {
+        ...process.env,
+        PYTHONPATH: path.join(__dirname, 'python-windows')
+      }
+    };
+  }
+
+  pyProc = spawn(pythonCmd, [script], options);
 
   pyProc.stdout.on('data', (data) => console.log(`PYTHON: ${data}`));
   pyProc.stderr.on('data', (data) => console.error(`PYTHON ERR: ${data}`));

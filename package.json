@@ -22,14 +22,16 @@
       "requirements.txt",
       "notes.json",
       "templates/**/*",
-      "static/**/*"
+      "static/**/*",
+      "python-windows/**/*"
     ],
     "extraResources": [
       "add.py",
       "requirements.txt",
       "notes.json",
       "templates/",
-      "static/"
+      "static/",
+      "python-windows/"
     ],
     "mac": {
       "target": [
