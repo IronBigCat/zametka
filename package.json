@@ -45,7 +45,8 @@
     "linux": {
       "target": "AppImage",
       "category": "Utility"
-    }
+    },
+    "publish": null
   },
   "devDependencies": {
     "electron": "^36.0.0",
