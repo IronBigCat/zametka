@@ -14,28 +14,23 @@ jobs:
 
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 20
 
       - name: Install dependencies
         run: npm install
 
-      - name: Build for current OS
+      - name: Build app for current OS
         run: |
-          if [[ "$RUNNER_OS" == "macOS" ]]; then
-            npx electron-builder --mac --x64 --arm64
+          if [[ "$RUNNER_OS" == "Linux" ]]; then
+            npm run dist:linux
           elif [[ "$RUNNER_OS" == "Windows" ]]; then
             npm run dist:win
-          elif [[ "$RUNNER_OS" == "Linux" ]]; then
-            npm run dist:linux
+          elif [[ "$RUNNER_OS" == "macOS" ]]; then
+            npm run dist:mac
           fi
-
-      - name: Upload artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: zametka-${{ runner.os }}
-          path: dist/
+        shell: bash
