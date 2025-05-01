@@ -32,3 +32,9 @@ jobs:
           elif [[ "$RUNNER_OS" == "macOS" ]]; then
             npm run dist:mac
           fi
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: zametka-${{ matrix.os }}
+          path: dist/
