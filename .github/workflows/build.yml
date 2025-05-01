@@ -31,6 +31,6 @@ jobs:
           elif [[ "$RUNNER_OS" == "Windows" ]]; then
             npm run dist:win
           elif [[ "$RUNNER_OS" == "macOS" ]]; then
-            npm run dist:mac
+            npx electron-builder --mac --x64 --arm64
           fi
         shell: bash
