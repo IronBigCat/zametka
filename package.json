@@ -50,5 +50,6 @@
   "devDependencies": {
     "electron": "^36.0.0",
     "electron-builder": "^26.0.12"
-  }
+  },
+  "author": "Keri Gros"
 }
